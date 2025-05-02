@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -12,13 +12,20 @@ export const routes: Routes = [
       import('./aluno/turmas/turmas.component').then((c) => c.TurmasComponent),
   },
   {
-    path: 'professor/turmas',
-    loadComponent: () =>
-      import('./professor/turmas/turmas.component').then((c) => c.TurmasComponent),
-  },
-  {
     path: 'professor',
     loadComponent: () =>
       import('./professor/inicio/inicio.component').then((c) => c.InicioComponent),
+    children: [
+      {
+        path: 'criar-exercicio',
+        loadComponent: () =>
+          import('./professor/criar-exercicio/criar-exercicio.component').then((c) => c.CriarExercicioComponent),
+      },
+      {
+        path: 'turmas',
+        loadComponent: () =>
+          import('./professor/turmas/turmas.component').then((c) => c.TurmasComponent),
+      }
+    ]
   }
 ];

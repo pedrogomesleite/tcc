@@ -16,9 +16,9 @@ public class Atividade {
 
     private String corpo;
 
-    @ManyToOne
-    @JoinColumn(name = "tema_id")
-    private Tema tema;
+    // Sistema de tags
+    @ManyToMany
+    private List<Tema> temas;
 
     @ManyToMany
     private List<Turma> turmas;
@@ -31,12 +31,12 @@ public class Atividade {
         this.turmas = turmas;
     }
 
-    public Tema getTema() {
-        return tema;
+    public List<Tema> getTemas() {
+        return temas;
     }
 
-    public void setTema(Tema tema) {
-        this.tema = tema;
+    public void setTemas(List<Tema> temas) {
+        this.temas = temas;
     }
 
     public Long getId() {
