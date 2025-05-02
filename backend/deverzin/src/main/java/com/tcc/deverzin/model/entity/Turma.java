@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(schema = "application", name = "aluno")
 public class Turma {
 
     @Id

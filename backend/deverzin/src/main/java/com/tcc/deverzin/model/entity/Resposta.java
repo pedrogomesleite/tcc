@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(schema = "application", name = "resposta")
 public class Resposta {
 
     @Id

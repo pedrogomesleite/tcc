@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(schema = "application", name = "tema")
 public class Tema {
 
     @Id
