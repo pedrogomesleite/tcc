@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  width: 100%;
+
+  .titulo {
+    height: fit-content;
+    textarea {
+      background-image: repeating-linear-gradient(
+          to bottom,
+          transparent,
+          transparent 95%,
+          var(--cor-t-3) 95%,
+          var(--cor-t-3) 100%
+      );
+    }
+
+  }
+}
+
+.input {
+  width: 100% !important;
+  color: var(--cor-t-3);
+  border: none;
+  background-color: transparent;
+  height: max-content !important;
+  appearance: none;
+  resize: none;
+  line-height: 24px;
+
+  background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 23px,
+      var(--cor-t-3) 23px,
+      var(--cor-t-3) 24px
+  );
+  background-size: 100% 24px;
+
+  &:focus, &:active, &:hover, &:focus-visible {
+    outline: none;
+  }
+}
