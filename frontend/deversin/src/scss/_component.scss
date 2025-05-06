@@ -1,0 +1,46 @@
+.card {
+  border-radius: .8rem;
+  padding: 1.8rem;
+  background-color: var(--cor-p-2);
+}
+
+.icon-button {
+  background-color: var(--cor-p-1);
+
+  &--1 {
+    background-color: var(--cor-p-1);
+  }
+
+  &--2 {
+    background-color: var(--cor-p-2);
+  }
+
+  &--3 {
+    background-color: var(--cor-p-3);
+  }
+
+  &--4 {
+    background-color: var(--cor-p-4);
+    color: var(--cor-t-1);
+
+    &:active {
+      color: var(--cor-t-3);
+    }
+  }
+}
+
+.icon-button, .icon-button--1, .icon-button--2, .icon-button--3, .icon-button--4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.5rem .8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color, color .2s ease;
+  border: none;
+
+  &:active {
+    background-color: var(--cor-d-4);
+  }
+}

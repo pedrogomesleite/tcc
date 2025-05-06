@@ -19,6 +19,11 @@
   }
 }
 
+.form-area {
+  display: flex;
+  gap: 1.2rem;
+}
+
 .input {
   width: 100% !important;
   color: var(--cor-t-3);
@@ -41,4 +46,9 @@
   &:focus, &:active, &:hover, &:focus-visible {
     outline: none;
   }
+}
+
+.submit-area {
+  height: fit-content;
+  width: 24rem;
 }
