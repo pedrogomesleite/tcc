@@ -1,0 +1,15 @@
+<div class="container" [formGroup]="formGroup">
+  <input type="text" [formControlName]="formControlName" class="input-text" [value]="value" (input)="filterItens($event)" placeholder="Selecione o tema">
+  @if (addBtn) {
+    <i class="pi pi-plus add-btn" (click)="addEvent.emit()"></i>
+  }
+  @if (showOp) {
+    <div class="select">
+      @for (item of showItens; track item.id) {
+        <div class="option" (click)="selectItem(item)">
+          {{ item.nome }}
+        </div>
+      }
+    </div>
+  }
+</div>
