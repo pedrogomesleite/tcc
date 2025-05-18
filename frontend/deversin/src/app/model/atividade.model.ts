@@ -11,4 +11,5 @@ export interface AtividadeRequest {
   titulo: string | null | undefined ;
   corpo: string | null | undefined ;
   tema: string | null | undefined ;
+  temas: string[] ;
 }

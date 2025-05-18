@@ -20,14 +20,14 @@ import {Tema} from '../../model/tema.model';
 export class CriarExercicioComponent implements OnInit {
 
   professorService: ProfessorService = inject(ProfessorService);
-  formBuilder: FormBuilder = inject(FormBuilder);
 
   temas: Tema[] = [];
+  selectedTemas: string[] = [];
 
   form = new FormGroup({
     titulo: new FormControl('', Validators.required),
     corpo: new FormControl('', Validators.required),
-    tema: new FormControl('', Validators.required),
+    tema: new FormControl(''),
   })
 
   async ngOnInit() {
@@ -42,11 +42,24 @@ export class CriarExercicioComponent implements OnInit {
 
     const request: AtividadeRequest = Object.assign(this.form.value);
     console.log(request);
+    request.temas = this.selectedTemas;
     this.professorService.criarAtividade(request).then(() => {
       window.alert('Atividade criada com sucesso');
     }).catch(() => {
       window.alert('Erro ao criar atividade');
     });
+  }
+
+  removeTema(index: number) {
+    this.selectedTemas.splice(index, 1);
+  }
+
+  addTema() {
+    if (!this.form.value.tema) {
+      return;
+    }
+    this.selectedTemas.push(this.form.value.tema);
+    this.form.patchValue({tema: ''});
   }
 }
 

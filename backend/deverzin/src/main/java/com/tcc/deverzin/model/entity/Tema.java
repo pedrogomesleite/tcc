@@ -1,5 +1,6 @@
 package com.tcc.deverzin.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,8 @@ public class Tema {
     @Column(unique = true)
     private String nome;
 
-    @ManyToMany(mappedBy = "temas")
+    @ManyToMany(mappedBy = "temas", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Atividade> atividades;
 
     public List<Atividade> getAtividades() {

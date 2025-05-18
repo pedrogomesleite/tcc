@@ -9,7 +9,17 @@
       </div>
     </div>
     <div class="form card submit-area">
-      <app-text-input-autocomplete placeholder="Temas" [formGroup]="form" formControlName="tema" [itens]="temas"></app-text-input-autocomplete>
+      <app-text-input-autocomplete placeholder="Temas" [formGroup]="form" formControlName="tema"
+                                   [itens]="temas" [addBtn]="true" (addEvent)="addTema()"></app-text-input-autocomplete>
+      @if (selectedTemas.length > 0) {
+        <div class="temas">
+          @for (tema of selectedTemas; track tema) {
+            <div class="tema" (click)="removeTema($index)">
+              {{ tema }} <i class="pi pi-times"></i>
+            </div>
+          }
+        </div>
+      }
       <button type="submit" class="icon-button--4">Enviar</button>
     </div>
   </div>

@@ -52,3 +52,26 @@
   height: fit-content;
   width: 24rem;
 }
+
+.temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+
+  .tema {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    gap: .4rem;
+    padding: .4rem .8rem;
+    border-radius: .3rem;
+    background-color: var(--cor-p-1);
+    color: var(--cor-t-3);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--cor-p-2);
+    }
+  }
+}
