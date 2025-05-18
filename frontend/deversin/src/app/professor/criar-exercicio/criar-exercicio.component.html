@@ -1,20 +1,16 @@
-<form [formGroup]="form">
-<div class="form-area">
-  <div class="form card text-area">
-    <div class="titulo">
-      <textarea rows="1" class="input" type="text" formControlName="titulo" placeholder="Título"></textarea>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-area">
+    <div class="form card text-area">
+      <div class="titulo">
+        <textarea rows="1" class="input" type="text" formControlName="titulo" placeholder="Título"></textarea>
+      </div>
+      <div class="corpo">
+        <textarea rows="20" class="input" type="text" formControlName="corpo" placeholder="Descrição"></textarea>
+      </div>
     </div>
-    <div class="corpo">
-      <textarea rows="20" class="input" type="text" formControlName="corpo" placeholder="Descrição"></textarea>
+    <div class="form card submit-area">
+      <app-text-input-autocomplete placeholder="Temas" [formGroup]="form" formControlName="tema" [itens]="temas"></app-text-input-autocomplete>
+      <button type="submit" class="icon-button--4">Enviar</button>
     </div>
   </div>
-  <div class="form card submit-area">
-    <input type="datetime-local" placeholder="Prazo de entrega">
-    <div style="display: flex; gap: 3px; align-items: center;">
-      <input type="checkbox" value="Aceitar entrega fora do prazo" id="ch">
-      <label for="ch">Aceitar entrega fora do prazo</label>
-    </div>
-    <button class="icon-button--4">Enviar</button>
-  </div>
-</div>
 </form>

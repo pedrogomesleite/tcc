@@ -17,7 +17,7 @@ public class Atividade {
     private String corpo;
 
     // Sistema de tags
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Tema> temas;
 
     @ManyToMany

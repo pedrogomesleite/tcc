@@ -6,6 +6,7 @@
 
 .icon-button {
   background-color: var(--cor-p-1);
+  transition: background-color, color .6s ease-in-out;
 
   &--1 {
     background-color: var(--cor-p-1);
@@ -37,10 +38,57 @@
   padding: 0.5rem .8rem;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color, color .2s ease;
+  transition: background-color .2s ease-in-out, color .3s ease-in-out;
   border: none;
 
   &:active {
     background-color: var(--cor-d-4);
+  }
+}
+
+.input-text {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  padding: 0.8rem;
+  border-radius: .8rem;
+  background-color: var(--cor-p-1);
+  color: var(--cor-t-3);
+
+  input {
+    width: 100% !important;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+
+    &:focus, &:active, &:hover, &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
+.input-date {
+  display: flex;
+  gap: 2px;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  padding: 0.8rem;
+  border-radius: .8rem;
+  background-color: var(--cor-p-1);
+  color: var(--cor-t-3);
+
+  input {
+    width: 100% !important;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+
+    &:focus, &:active, &:hover, &:focus-visible {
+      outline: none;
+    }
   }
 }

@@ -1,9 +1,30 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {lastValueFrom} from 'rxjs';
+import {Tema} from '../model/tema.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  deps: [HttpClient],
+  useFactory: (http: HttpClient) => new ProfessorService(http),
 })
 export class ProfessorService {
 
-  constructor() { }
+  private http: HttpClient;
+
+  private urlProfessor = 'http://localhost:8080/professor';
+  private urlAtividade = 'http://localhost:8080/atividade';
+  private urlTema = 'http://localhost:8080/tema';
+
+  constructor(http: HttpClient) {
+    this.http = http;
+  }
+
+  public listarTemas() {
+    return lastValueFrom(this.http.get<Tema[]>(this.urlTema + '/listar-base'));
+  }
+
+  public criarAtividade(atividade: any) {
+    return lastValueFrom(this.http.post(this.urlAtividade + '/salvar', atividade));
+  }
 }

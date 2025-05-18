@@ -8,6 +8,7 @@ import {RouterLink, RouterOutlet} from '@angular/router';
     RouterOutlet
   ],
   templateUrl: './inicio.component.html',
+  standalone: true,
   styleUrl: './inicio.component.scss'
 })
 export class InicioComponent {

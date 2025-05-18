@@ -2,6 +2,8 @@ package com.tcc.deverzin.model.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 public class Tema {
@@ -10,9 +12,19 @@ public class Tema {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nome;
 
-    private String descricao;
+    @ManyToMany(mappedBy = "temas")
+    private List<Atividade> atividades;
+
+    public List<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades) {
+        this.atividades = atividades;
+    }
 
     public Long getId() {
         return id;
@@ -28,13 +40,5 @@ public class Tema {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 }
