@@ -1,11 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ProfessorService} from '../professor.service';
+import {ProfessorService} from '../../professor.service';
 import {
   TextInputAutocompleteComponent
-} from '../../shared/components/text-input-autocomplete/text-input-autocomplete.component';
-import {AtividadeRequest} from '../../model/atividade.model';
-import {Tema} from '../../model/tema.model';
+} from '../../../shared/components/text-input-autocomplete/text-input-autocomplete.component';
+import {AtividadeRequest} from '../../../model/atividade.model';
+import {Tema} from '../../../model/tema.model';
 
 @Component({
   selector: 'app-criar-exercicio',

@@ -19,7 +19,7 @@ export const routes: Routes = [
       {
         path: 'criar-exercicio',
         loadComponent: () =>
-          import('./professor/criar-exercicio/criar-exercicio.component').then((c) => c.CriarExercicioComponent),
+          import('./professor/exercicio/criar/criar-exercicio.component').then((c) => c.CriarExercicioComponent),
       },
       {
         path: 'turmas',
