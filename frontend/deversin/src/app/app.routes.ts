@@ -18,13 +18,21 @@ export const routes: Routes = [
     children: [
       {
         path: 'criar-exercicio',
+        title: 'Criar Exercicio',
         loadComponent: () =>
           import('./professor/exercicio/criar/criar-exercicio.component').then((c) => c.CriarExercicioComponent),
       },
       {
         path: 'turmas',
+        title: 'Visualizar Turmas',
         loadComponent: () =>
           import('./professor/turmas/turmas.component').then((c) => c.TurmasComponent),
+      },
+      {
+        path: 'criar-turma',
+        title: 'Criar turma',
+        loadComponent: () =>
+          import('./professor/turmas/criar-turma/criar-turma.component').then((c) => c.CriarTurmaComponent),
       }
     ]
   }

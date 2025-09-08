@@ -27,4 +27,12 @@ export class ProfessorService {
   public criarAtividade(atividade: any) {
     return lastValueFrom(this.http.post(this.urlAtividade + '/salvar', atividade));
   }
+
+  public listarAtividaes() {
+    return lastValueFrom(this.http.get<any[]>(this.urlAtividade + '/listar-base'));
+  }
+
+  public listarAtividaesComFiltro(filtro: string) {
+    return lastValueFrom(this.http.get<any[]>(this.urlAtividade + '/listar/' + filtro));
+  }
 }

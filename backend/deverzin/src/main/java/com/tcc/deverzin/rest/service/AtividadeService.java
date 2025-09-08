@@ -38,6 +38,10 @@ public class AtividadeService extends BaseService<Atividade> {
         return super.salvar(atividade);
     }
 
+    public List<Atividade> listarComFiltro(String filtro) {
+        return atividadeRepository.listarComFiltro(filtro);
+    }
+
     @Override
     public JpaRepository<Atividade, Long> getRepository() {
         return atividadeRepository;

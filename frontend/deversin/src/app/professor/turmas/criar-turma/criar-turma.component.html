@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-area">
+    <div class="form card text-area">
+      <h2>Criar Turma</h2>
+      <div class="form-inputs">
+        <div class="">
+          <h4>Nome da Turma</h4>
+          <input class="input-text" placeholder="Titulo" type="text" formControlName="titulo">
+        </div>
+        <div class="">
+          <h4>Data de entrega</h4>
+          <input class="input-date" type="datetime-local" formControlName="prazo">
+        </div>
+      </div>
+      <div class="atividade-area">
+        <h3>Selecionar Atividades</h3>
+        <input class="input-text" [(ngModel)]="atividadesFilter" type="text" placeholder="Filtro" (ngModelChange)="buscarComFiltro($event)">
+        <p-listbox formControlName="atividades" [options]="exerciciosOp" [multiple]="true" [virtualScroll]="true">
+          <ng-template #item let-atividade>
+            <div>{{ atividade.titulo }}</div>
+          </ng-template>
+        </p-listbox>
+      </div>
+    </div>
+    <div class="form card submit-area">
+      <div class="check">
+        <input id="ent" type="checkbox">
+        <label for="ent">Aceitar entrega fora do prazo</label>
+      </div>
+      <button style="flex: 1" type="submit" class="icon-button--4">Criar Turma</button>
+    </div>
+  </div>
+</form>
