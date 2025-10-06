@@ -15,6 +15,8 @@ export class ProfessorService {
   private urlProfessor = 'http://localhost:8080/professor';
   private urlAtividade = 'http://localhost:8080/atividade';
   private urlTema = 'http://localhost:8080/tema';
+  private urlTurma = 'http://localhost:8080/turma';
+
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -34,5 +36,9 @@ export class ProfessorService {
 
   public listarAtividaesComFiltro(filtro: string) {
     return lastValueFrom(this.http.get<any[]>(this.urlAtividade + '/listar/' + filtro));
+  }
+
+  public criarTurma(turma: any) {
+    return lastValueFrom(this.http.post(this.urlTurma + '/salvar', turma));
   }
 }

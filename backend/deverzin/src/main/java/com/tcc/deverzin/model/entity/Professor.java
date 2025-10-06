@@ -1,45 +1,27 @@
 package com.tcc.deverzin.model.entity;
 
+import com.tcc.deverzin.model.dto.auth.SingUpDto;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class Professor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String nome;
-
-    private String email;
+public class Professor extends User {
 
     @OneToMany
     private List<Turma> turmas;
 
-    public Long getId() {
-        return id;
+    public Professor(SingUpDto dto) {
+        setNome(dto.nome());
+        setEmail(dto.email());
+        setSenha(dto.senha());
+        this.turmas = List.of();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Professor() {
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public List<Turma> getTurmas() {
@@ -48,5 +30,30 @@ public class Professor {
 
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return super.isEnabled();
     }
 }

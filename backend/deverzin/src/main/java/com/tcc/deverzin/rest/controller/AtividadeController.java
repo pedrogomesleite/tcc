@@ -5,7 +5,6 @@ import com.tcc.deverzin.model.entity.Atividade;
 import com.tcc.deverzin.rest.base.BaseController;
 import com.tcc.deverzin.rest.base.BaseService;
 import com.tcc.deverzin.rest.service.AtividadeService;
-import jakarta.servlet.ServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,7 @@ public class AtividadeController extends BaseController<Atividade> {
     }
 
     @GetMapping("/listar/{filtro}")
-    public ResponseEntity<List<Atividade>> listarComFiltro(@PathVariable String filtro, ServletResponse servletResponse) {
+    public ResponseEntity<List<Atividade>> listarComFiltro(@PathVariable String filtro) {
         return ResponseEntity.ok(atividadeService.listarComFiltro(filtro));
     }
 

@@ -12,14 +12,19 @@
           <input class="input-date" type="datetime-local" formControlName="prazo">
         </div>
       </div>
-      <div class="atividade-area">
-        <h3>Selecionar Atividades</h3>
-        <input class="input-text" [(ngModel)]="atividadesFilter" type="text" placeholder="Filtro" (ngModelChange)="buscarComFiltro($event)">
-        <p-listbox formControlName="atividades" [options]="exerciciosOp" [multiple]="true" [virtualScroll]="true">
-          <ng-template #item let-atividade>
-            <div>{{ atividade.titulo }}</div>
-          </ng-template>
-        </p-listbox>
+      <div class="atividades-selection">
+        <h4>Selecione as Atividades</h4>
+        <p-multi-select
+          [options]="exerciciosOp"
+          formControlName="atividades"
+          optionLabel="titulo"
+          optionValue="id"
+          [filter]="true"
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+          placeholder="Selecione as atividades"
+          (onFilter)="buscarComFiltro($event)"
+        ></p-multi-select>
       </div>
     </div>
     <div class="form card submit-area">

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlunoRepository extends BaseRepository<Aluno> {
+    Aluno findByEmail(String email);
 }

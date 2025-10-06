@@ -4,6 +4,7 @@ import com.tcc.deverzin.model.entity.Atividade;
 import com.tcc.deverzin.rest.base.BaseRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,5 +21,5 @@ public interface AtividadeRepository extends BaseRepository<Atividade> {
             order by a.id asc
             limit 10
             """)
-    List<Atividade> listarComFiltro(String filtro);
+    List<Atividade> listarComFiltro(@Param("filter") String filtro);
 }

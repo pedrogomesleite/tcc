@@ -1,14 +1,14 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Listbox} from 'primeng/listbox';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfessorService} from '../../professor.service';
+import {MultiSelect, MultiSelectFilterEvent} from 'primeng/multiselect';
 
 @Component({
   selector: 'app-criar-turma',
   imports: [
     ReactiveFormsModule,
-    Listbox,
-    FormsModule
+    FormsModule,
+    MultiSelect
   ],
   templateUrl: './criar-turma.component.html',
   styleUrl: './criar-turma.component.scss'
@@ -31,14 +31,23 @@ export class CriarTurmaComponent implements OnInit {
   async ngOnInit() {
   }
 
-  async buscarComFiltro(event: InputEvent) {
-    const filtro = event.data ?? '';
-    console.log(filtro);
+  async buscarComFiltro(event: MultiSelectFilterEvent) {
+    const filtro = event.filter ? event.filter : '';
     this.exerciciosOp = await this.service.listarAtividaesComFiltro(filtro);
-    console.log(this.exerciciosOp);
   }
 
-  onSubmit(): void {
+  async onSubmit() {
+    if (!this.form.valid) {
+      window.alert('Preencha todos os campos');
+      return;
+    }
 
+    const request = Object.assign(this.form.value);
+    console.log(request);
+    this.service.criarTurma(request).then(() => {
+      window.alert('Turma criada com sucesso');
+    }).catch(() => {
+      window.alert('Erro ao criar atividade');
+    });
   }
 }
