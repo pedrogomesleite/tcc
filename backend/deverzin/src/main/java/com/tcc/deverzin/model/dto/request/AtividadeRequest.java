@@ -5,6 +5,7 @@ import jakarta.annotation.Nonnull;
 import java.util.List;
 
 public record AtividadeRequest(
+        Long id,
         @Nonnull
         String titulo,
         @Nonnull

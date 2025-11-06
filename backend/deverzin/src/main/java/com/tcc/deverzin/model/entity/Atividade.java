@@ -14,6 +14,7 @@ public class Atividade {
 
     private String titulo;
 
+    @Column(columnDefinition = "TEXT")
     private String corpo;
 
     // Sistema de tags

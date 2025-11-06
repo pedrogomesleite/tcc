@@ -8,6 +8,7 @@ export interface Atividade {
 }
 
 export interface AtividadeRequest {
+  id: number | null | undefined ;
   titulo: string | null | undefined ;
   corpo: string | null | undefined ;
   tema: string | null | undefined ;

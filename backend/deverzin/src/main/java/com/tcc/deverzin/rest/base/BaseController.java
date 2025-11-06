@@ -30,4 +30,15 @@ public abstract class BaseController<ENTITY> {
         getService().deletar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/listar-paginado")
+    public ResponseEntity<PageResult<ENTITY>> listarPaginado(
+            @RequestParam(required = false) Integer first,
+            @RequestParam(required = false) Integer rows,
+            @RequestParam(required = false) String sortField,
+            @RequestParam(required = false) Integer sortOrder
+    ) {
+        PageResult<ENTITY> result = getService().listarPaginado(first, rows, sortField, sortOrder);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 }

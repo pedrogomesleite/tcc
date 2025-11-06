@@ -6,12 +6,14 @@ import {
 } from '../../../shared/components/text-input-autocomplete/text-input-autocomplete.component';
 import {AtividadeRequest} from '../../../model/atividade.model';
 import {Tema} from '../../../model/tema.model';
+import {Editor} from 'primeng/editor';
 
 @Component({
   selector: 'app-criar-exercicio',
   imports: [
     ReactiveFormsModule,
     TextInputAutocompleteComponent,
+    Editor,
   ],
   templateUrl: './criar-exercicio.component.html',
   standalone: true,
@@ -41,7 +43,6 @@ export class CriarExercicioComponent implements OnInit {
     }
 
     const request: AtividadeRequest = Object.assign(this.form.value);
-    console.log(request);
     request.temas = this.selectedTemas;
     this.professorService.criarAtividade(request).then(() => {
       window.alert('Atividade criada com sucesso');

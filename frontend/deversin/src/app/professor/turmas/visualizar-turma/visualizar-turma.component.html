@@ -11,24 +11,13 @@
           <h4>Data de entrega</h4>
           <input class="input-date" type="datetime-local" formControlName="prazo">
         </div>
-      </div>
-      <div class="atividades-selection">
-        <h4>Selecione as Atividades</h4>
-        <p-multi-select
-          [options]="exerciciosOp"
-          (onChange)="getAtividadesSelecionadas()"
-          formControlName="atividades"
-          optionLabel="titulo"
-          optionValue="id"
-          [filter]="true"
-          [virtualScroll]="true"
-          [virtualScrollItemSize]="38"
-          placeholder="Selecione as atividades"
-          (onFilter)="buscarComFiltro($event)"
-        ></p-multi-select>
+        <div class="">
+          <h4>Codigo</h4>
+          <input class="input-date" type="text" [disabled]="true" [value]="codigo">
+        </div>
       </div>
       <div class="atividades-selecionadas">
-        <p-table [value]="exerciciosSelectedLoaded">
+        <p-table [value]="exerciciosOp">
           <ng-template #body let-atividade>
             <tr>
               <td>{{ atividade.titulo }}</td>
@@ -40,12 +29,8 @@
                 }
               </td>
               <td>
-                <button [routerLink]="['/professor/visualizar-exercicio', atividade.id]" pButton type="button"
-                        icon="pi pi-search" class="p-button-text" title="Visualizar"></button>
-                <button [routerLink]="['/professor/atualizar-exercicio', atividade.id]" pButton type="button"
-                        icon="pi pi-pencil" class="p-button-text" title="Editar"></button>
-                <button pButton type="button"
-                        icon="pi pi-times" class="p-button-text" title="Remover" (click)="removerAtividade(atividade.id)"></button>
+                <button [routerLink]="['/professor/visualizar-exercicio', atividade.id]" pButton type="button" icon="pi pi-search" class="p-button-text" title="Visualizar"></button>
+                <button [routerLink]="['/professor/atualizar-exercicio', atividade.id]" pButton type="button" icon="pi pi-pencil" class="p-button-text" title="Editar"></button>
               </td>
             </tr>
           </ng-template>
@@ -57,7 +42,6 @@
         <p-checkbox id="ent" [binary]="true" formControlName="aceitarForadoPrazo"/>
         <label for="ent">Aceitar entrega fora do prazo</label>
       </div>
-      <button style="flex: 1" type="submit" class="icon-button--4">Criar Turma</button>
     </div>
   </div>
 </form>

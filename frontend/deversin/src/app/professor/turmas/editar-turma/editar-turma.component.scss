@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  gap: .8rem;
+
+}
+
+.form-area {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.text-area {
+  width: 100%;
+  flex-direction: column;
+}
+
+.submit-area {
+  flex-direction: column;
+  width: 25rem;
+  height: min-content;
+}
+
+.check {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.form-inputs {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.atividade-area {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}

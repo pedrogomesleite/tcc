@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 public record TurmaRequest(
+        Long id,
+        String titulo,
         Date criacao,
         Date prazo,
         Boolean ativo,

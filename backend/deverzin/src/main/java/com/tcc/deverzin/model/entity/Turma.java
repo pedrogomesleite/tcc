@@ -18,6 +18,10 @@ public class Turma {
 
     private Boolean ativo;
 
+    private String codigo;
+
+    private String titulo;
+
     private Boolean aceitarForadoPrazo;
 
     @ManyToOne
@@ -46,6 +50,14 @@ public class Turma {
         return criacao;
     }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public void setCriacao(Date criacao) {
         this.criacao = criacao;
     }
@@ -64,6 +76,14 @@ public class Turma {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Boolean getAceitarForadoPrazo() {

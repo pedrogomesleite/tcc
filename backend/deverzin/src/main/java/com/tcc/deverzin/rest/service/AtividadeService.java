@@ -25,9 +25,6 @@ public class AtividadeService extends BaseService<Atividade> {
 
     public Atividade salvar(AtividadeRequest atividadeRequest) {
         List<Tema> temas = new ArrayList<>();
-        if (atividadeRequest.tema() != null) {
-            temas.add(temaService.buscarOuCriar(atividadeRequest.tema()));
-        }
         if (atividadeRequest.temas() != null) {
             atividadeRequest.temas().forEach(tema -> temas.add(temaService.buscarOuCriar(tema)));
         }
@@ -35,6 +32,9 @@ public class AtividadeService extends BaseService<Atividade> {
         atividade.setTitulo(atividadeRequest.titulo());
         atividade.setCorpo(atividadeRequest.corpo());
         atividade.setTemas(temas);
+        if (atividadeRequest.id() != null) {
+            atividade.setId(atividadeRequest.id());
+        }
         return super.salvar(atividade);
     }
 
