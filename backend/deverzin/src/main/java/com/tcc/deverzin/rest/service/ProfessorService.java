@@ -5,6 +5,7 @@ import com.tcc.deverzin.model.entity.Aluno;
 import com.tcc.deverzin.model.entity.Professor;
 import com.tcc.deverzin.rest.base.BaseService;
 import com.tcc.deverzin.rest.repository.ProfessorRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,15 @@ public class ProfessorService extends BaseService<Professor> {
     }
 
     public Professor authenticate(String email, String senha) {
-        Professor professor = professorRepository.findByEmail(email);
+        Professor professor = professorRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
         if (professor == null || !passwordEncoder.matches(senha, professor.getSenha())) {
             throw new RuntimeException("Email ou senha inválidos");
         }
         return professor;
+    }
+
+    public Professor findByEmail(String email) {
+        return professorRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override

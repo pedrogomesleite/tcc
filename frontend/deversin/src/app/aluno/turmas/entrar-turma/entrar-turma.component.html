@@ -1,0 +1,10 @@
+<div class="center">
+  <form (ngSubmit)="submit()" class="card" [formGroup]="form">
+    <h2>Entrar em nova turma</h2>
+    <input pInputText formControlName="codigo" placeholder="Codigo da Turma">
+    <p-button-group >
+      <button pButton severity="warn" [routerLink]="['/']">Voltar</button>
+      <button pButton type="submit">Entrar</button>
+    </p-button-group>
+  </form>
+</div>

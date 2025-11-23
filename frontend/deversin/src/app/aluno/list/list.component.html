@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="p-3 card">
+    <h3>Respostas</h3>
+    <p-table
+      [value]="atividades"
+      [lazy]="true"
+      [rows]="10"
+      [lazyLoadOnInit]="true"
+      [paginator]="true"
+      (onLazyLoad)="getAtividaes($event)"
+      [totalRecords]="atividadesTotal"
+      [loading]="atividadesLoading">
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="titulo">Título</th>
+          <th pSortableColumn="tema">Tema</th>
+          <th style="width:120px">Ações</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-resposta>
+        <tr>
+          <td>{{ resposta.atividade.titulo }}</td>
+          <td>
+            @for (c of resposta.atividade.temas; track c) {
+              @if ($index < 6) {
+                <p-chip [label]="c.nome"></p-chip>
+              }
+            }
+          </td>
+          <td>
+            <button [routerLink]="['visualizar-exercicio', resposta.atividade.id]" pButton type="button" icon="pi pi-search" class="p-button-text" title="Visualizar"></button>
+            <button [routerLink]="['atualizar-exercicio', resposta.atividade.id]" pButton type="button" icon="pi pi-pencil" class="p-button-text" title="Editar"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="3">Nenhuma atividade encontrada.</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </div>
+
+  <div class="p-3 card">
+    <h3>Turmas</h3>
+    <p-table
+      [value]="turmas"
+      [lazy]="true"
+      [rows]="10"
+      [lazyLoadOnInit]="true"
+      [paginator]="true"
+      (onLazyLoad)="getTurmas($event)"
+      [totalRecords]="turmasTotal"
+      [loading]="turmasLoading">
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="nome">Nome</th>
+          <th pSortableColumn="turno">Codigo de acesso</th>
+          <th style="width:120px">Ações</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-turma>
+        <tr>
+          <td>{{ turma.titulo }}</td>
+          <td>{{ turma.codigo }}</td>
+          <td>
+            <button [routerLink]="['visualizar-turma', turma.codigo]" pButton type="button" icon="pi pi-search" class="p-button-text" title="Visualizar"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="3">Nenhuma turma encontrada.</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </div>
+</div>

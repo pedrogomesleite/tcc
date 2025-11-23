@@ -1,0 +1,12 @@
+<div class="row">
+  <div style="width: 60%">
+    <app-view-exercicio></app-view-exercicio>
+  </div>
+  <div class="respo" style="flex: 1">
+    <monaco-editor [(value)]="resposta" ></monaco-editor>
+    <p-button-group class="btn-area">
+      <button pButton type="button" severity="warn" (click)="guardar()">Guardar Resposta</button>
+      <button pButton type="button" (click)="responder()">Enviar Resposta</button>
+    </p-button-group>
+  </div>
+</div>

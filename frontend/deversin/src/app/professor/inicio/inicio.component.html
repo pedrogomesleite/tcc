@@ -12,7 +12,8 @@
   </div>
 
   <div class="button-area">
-    <div class="logout-button" routerLink="/">
+    <p>{{ getName() }}</p>
+    <div class="logout-button" (click)="clearToken()" routerLink="/">
       <i class="pi pi-sign-out"></i>
     </div>
   </div>

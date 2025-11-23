@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
+import {TokenService} from '../../public/token.service';
 
 @Component({
   selector: 'app-inicio',
@@ -13,4 +14,13 @@ import {RouterLink, RouterOutlet} from '@angular/router';
 })
 export class InicioComponent {
 
+  tokenService: TokenService = inject(TokenService);
+
+  clearToken() {
+    this.tokenService.clearToken()
+  }
+
+  getName(): string {
+    return this.tokenService.getUsername() ?? '';
+  }
 }

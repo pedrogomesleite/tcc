@@ -1,0 +1,85 @@
+@if (turma) {
+  <div class="p-fluid">
+    <p-card>
+      <ng-template pTemplate="title">
+        <div class="p-d-flex p-jc-between p-ai-center">
+          <div>
+            <h2 class="turma-title">{{ turma.titulo || ('Código: ' + turma.codigo) }}</h2>
+            <p class="turma-code">Código: <strong>{{ turma.codigo }}</strong></p>
+          </div>
+          <div class="turma-tags p-text-right">
+            <p-chip [label]="turma.ativo ? 'Ativa' : 'Inativa'" styleClass="p-mr-2"></p-chip>
+            <p-chip [label]="turma.aceitarForadoPrazo ? 'Aceita fora do prazo' : 'Não aceita fora do prazo'" styleClass="p-ml-2"></p-chip>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="subtitle">
+        <div class="p-grid">
+          <div class="p-col-12 p-md-4">
+            <small>CRIADO</small>
+            <div>{{ turma.criacao | date:'short' }}</div>
+          </div>
+          <div class="p-col-12 p-md-4">
+            <small>PRAZO</small>
+            <div>{{ turma.prazo ? (turma.prazo | date:'short') : '—' }}</div>
+          </div>
+          <div class="p-col-12 p-md-4">
+            <small>PROFESSOR</small>
+            <div>{{ turma.professor?.nome || turma.professor?.username || '—' }}</div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="content">
+        <div class="p-mt-3">
+          <h3>Atividades ({{ turma.atividades?.length || 0 }})</h3>
+
+          <p-table [value]="turma.atividades || []" responsiveLayout="scroll" styleClass="p-mb-3">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Título</th>
+                <th>Temas</th>
+                <th style="width:8rem">Ações</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-atividade>
+              <tr>
+                <td>{{ atividade.titulo }}</td>
+                <td>
+                  @if ((atividade.temas || []).length) {
+                    @for (tema of atividade.temas; track tema.id) {
+                      <p-chip [label]="tema.titulo || tema.nome || (tema | json)" styleClass="p-mr-2 p-mb-1"></p-chip>
+                    }
+                  } @else {
+                    —
+                  }
+                </td>
+                <td>
+                  @if (showResponder(atividade.id)) {
+                    <button pButton type="button" icon="pi pi-pencil" class="p-button-text" title="Responder" [routerLink]="['/aluno', 'responder-atividade', atividade.id, turma.id]"></button>
+                  } @else if (showVisualizar(atividade.id)) {
+                    <button pButton type="button" icon="pi pi-search" class="p-button-text" title="Visualizar" [routerLink]="['/aluno', 'visualizar-atividade', atividade.id, turma.id]"></button>
+                  } @else {
+                    <button pButton type="button" icon="pi pi-bookmark" class="p-button-text" title="Continuar" [routerLink]="['/aluno', 'responder-atividade', atividade.id, turma.id, getRepostaId(atividade.id)]"></button>
+                  }
+
+
+                    </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4">Nenhuma atividade encontrada.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+} @else {
+  <div class="p-d-flex p-jc-center p-ai-center p-mt-5">
+    <p>Sem dados da turma para exibir.</p>
+  </div>
+}

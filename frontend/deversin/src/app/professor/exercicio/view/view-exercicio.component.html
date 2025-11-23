@@ -4,24 +4,23 @@
       <div class="titulo">
         <textarea  rows="1" class="input" type="text" formControlName="titulo" placeholder="Título"></textarea>
       </div>
+      <div class="">
+        @if (selectedTemas.length > 0) {
+          <div class="temas">
+            @for (tema of selectedTemas; track tema) {
+              <div class="tema">
+                {{ tema }}
+              </div>
+            }
+          </div>
+        }
+      </div>
       <div class="corpo">
         <p-editor [readonly]="true"  [style]="{ minHeight: '450px' }" formControlName="corpo" placeholder="Descrição">
           <ng-template #header>
           </ng-template>
         </p-editor>
       </div>
-    </div>
-    <div class="form card submit-area">
-      <h2>Temas</h2>
-      @if (selectedTemas.length > 0) {
-        <div class="temas">
-          @for (tema of selectedTemas; track tema) {
-            <div class="tema">
-              {{ tema }}
-            </div>
-          }
-        </div>
-      }
     </div>
   </div>
 </form>

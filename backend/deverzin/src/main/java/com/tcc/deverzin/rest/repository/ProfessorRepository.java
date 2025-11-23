@@ -4,8 +4,10 @@ import com.tcc.deverzin.model.entity.Professor;
 import com.tcc.deverzin.rest.base.BaseRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ProfessorRepository extends BaseRepository<Professor> {
 
-    Professor findByEmail(String email);
+    Optional<Professor> findByEmail(String email);
 }

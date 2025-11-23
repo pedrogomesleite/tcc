@@ -19,6 +19,11 @@ public class Resposta {
 
     private Date entrega;
 
+    @Column(columnDefinition = "TEXT")
+    private String codigoFonte;
+
+    private String hash;
+
     private Boolean foraPrazo;
 
     private Linguagem linguagem;
@@ -29,6 +34,9 @@ public class Resposta {
     @ManyToOne
     private Atividade atividade;
 
+    @ManyToOne
+    private Turma turma;
+
     public Long getId() {
         return id;
     }
@@ -37,12 +45,36 @@ public class Resposta {
         this.id = id;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
     public Float getNota() {
         return nota;
     }
 
     public void setNota(Float nota) {
         this.nota = nota;
+    }
+
+    public String getCodigoFonte() {
+        return codigoFonte;
+    }
+
+    public void setCodigoFonte(String codigoFonte) {
+        this.codigoFonte = codigoFonte;
     }
 
     public Float getPlagio() {

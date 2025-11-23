@@ -1,1 +1,12 @@
-<p>aluno-singup works!</p>
+<div class="center">
+  <form (ngSubmit)="submit()" class="card" [formGroup]="form">
+    <h2>Aluno Sign Up</h2>
+    <input pInputText formControlName="nome" placeholder="Nome">
+    <input pInputText formControlName="email" placeholder="Email">
+    <input pPassword [showPassword]="false" formControlName="senha" placeholder="Senha">
+    <p-button-group>
+      <button pButton severity="warn" [routerLink]="['/']">Voltar</button>
+      <button pButton type="submit">Enviar</button>
+    </p-button-group>
+  </form>
+</div>

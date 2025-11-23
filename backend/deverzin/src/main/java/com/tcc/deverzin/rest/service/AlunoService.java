@@ -5,6 +5,7 @@ import com.tcc.deverzin.model.entity.Aluno;
 import com.tcc.deverzin.rest.base.BaseRepository;
 import com.tcc.deverzin.rest.base.BaseService;
 import com.tcc.deverzin.rest.repository.AlunoRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,15 @@ public class AlunoService extends BaseService<Aluno> {
     }
 
     public Aluno authenticate(String email, String senha) {
-        Aluno aluno = alunoRepository.findByEmail(email);
+        Aluno aluno = alunoRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
         if (aluno == null || !passwordEncoder.matches(senha, aluno.getSenha())) {
             throw new RuntimeException("Email ou senha inválidos");
         }
         return aluno;
+    }
+
+    public Aluno findByEmail(String email) {
+        return alunoRepository.findByEmail(email).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override

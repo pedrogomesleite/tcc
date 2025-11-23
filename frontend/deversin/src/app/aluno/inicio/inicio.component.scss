@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--cor-p-3);
+
+  .button-area {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    p {
+      font-size: 1.2rem;
+      color: var(--cor-t-3);
+    }
+  }
+}
+
+.logout-button {
+  color: var(--cor-t-3);
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 1s ease;
+  border-radius: 5rem;
+  padding: 1rem;
+
+  &:active {
+    background-color: var(--cor-p-1);
+  }
+}
+
+.main-container {
+  border-radius: .8rem;
+  padding: 1rem;
+}

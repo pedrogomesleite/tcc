@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="button-area">
+    <div class="icon-button" routerLink="entrar-turma">
+      <i class="pi pi-plus"></i><span>Turma</span>
+    </div>
+    <div class="icon-button" routerLink="./">
+      <i class="pi pi-home"></i><span>Inicio</span>
+    </div>
+  </div>
+
+  <div class="button-area">
+    <span>{{ getName() }}</span>
+    <div class="logout-button" (click)="clearToken()" routerLink="/">
+      <i class="pi pi-sign-out"></i>
+    </div>
+  </div>
+</div>
+<div class="main-container">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

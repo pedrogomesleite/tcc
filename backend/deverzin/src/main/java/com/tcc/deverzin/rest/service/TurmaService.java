@@ -3,7 +3,12 @@ package com.tcc.deverzin.rest.service;
 import com.tcc.deverzin.model.dto.request.TurmaRequest;
 import com.tcc.deverzin.model.entity.Turma;
 import com.tcc.deverzin.rest.base.BaseService;
+import com.tcc.deverzin.rest.base.PageResult;
 import com.tcc.deverzin.rest.repository.TurmaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +19,17 @@ import java.util.List;
 public class TurmaService extends BaseService<Turma> {
     private final TurmaRepository turmaRepository;
 
+    private final AlunoService alunoService;
+
     private final ProfessorService professorService;
 
     private final AtividadeService atividadeService;
 
     private int codigoLength = 8;
 
-    public TurmaService(TurmaRepository turmaRepository, ProfessorService professorService, AtividadeService atividadeService) {
+    public TurmaService(TurmaRepository turmaRepository, AlunoService alunoService, ProfessorService professorService, AtividadeService atividadeService) {
         this.turmaRepository = turmaRepository;
+        this.alunoService = alunoService;
         this.professorService = professorService;
         this.atividadeService = atividadeService;
     }
@@ -47,6 +55,25 @@ public class TurmaService extends BaseService<Turma> {
         return super.salvar(turma);
     }
 
+    public PageResult<Turma> listarPaginado(Integer first, Integer rows, String sortField, Integer sortOrder, Long id) {
+        int page = 0;
+        int size = (rows != null && rows > 0) ? rows : 10;
+        if (first != null && rows != null && rows > 0) {
+            page = first / rows;
+        }
+
+        Pageable pageable;
+        if (sortField != null && !sortField.isEmpty()) {
+            Sort.Direction dir = (sortOrder != null && sortOrder < 0) ? Sort.Direction.DESC : Sort.Direction.ASC;
+            pageable = PageRequest.of(page, size, Sort.by(dir, sortField));
+        } else {
+            pageable = PageRequest.of(page, size);
+        }
+
+        Page<Turma> p = turmaRepository.findAll(pageable, id);
+        return new PageResult<>(p.getContent(), p.getTotalElements());
+    }
+
     public String gerarCodigoAleatorio() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder codigo = new StringBuilder();
@@ -69,5 +96,13 @@ public class TurmaService extends BaseService<Turma> {
     @Override
     public JpaRepository<Turma, Long> getRepository() {
         return turmaRepository;
+    }
+
+    public Turma adicionarAlunoNaTurma(String codigo, Long id) {
+        var aluno = alunoService.buscar(id);
+        var turma = getByCodigo(codigo);
+        aluno.getTurmas().add(turma);
+        alunoService.salvar(aluno);
+        return turma;
     }
 }
