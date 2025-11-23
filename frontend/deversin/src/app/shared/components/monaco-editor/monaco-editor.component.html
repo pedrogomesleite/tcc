@@ -1,0 +1,17 @@
+<p-card>
+  <div class="monaco-toolbar" *ngIf="showLanguageSelector">
+    <label class="lang-label">Language:</label>
+    <p-dropdown
+      [options]="availableLanguageOptions"
+      [(ngModel)]="language"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="Select language"
+      (onChange)="setLanguage($event.value)"
+      [style]="{ 'min-width': '180px' }">
+    </p-dropdown>
+  </div>
+
+  <div class="monaco-host" #editorContainer></div>
+</p-card>
+
